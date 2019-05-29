@@ -485,3 +485,25 @@ const reverseThis = (str) => {
   } return newString;
 }
 console.log(reverseThis('Memes'));
+
+/**
+ * exercise 94
+ * This function finds the number which appears most in a given array of integers.
+ * @param {number} arr 
+ */
+function array_element_mode(arr) {
+  var ctr = [],
+    ans = 0;
+
+  for(var i = 0; i < 10; i++) {
+    ctr.push(0);
+  }
+  for(var i = 0; i < arr.length; i++) {
+    ctr[arr[i] - 1]++;
+    if(ctr[arr[i] - 1] > ctr[ans]) {
+      ans = arr[i] - 1;
+    }
+  }
+  return ans + 1;  
+}
+console.log(array_element_mode([5, 8, 3, 8, 8, 6, 7, 4]))
