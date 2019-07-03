@@ -7,14 +7,14 @@
  */
 const calculate = (num1, num2, operation) => {
     if (operation == "+") {
-        return num1 + num2;
+        return parseInt(num1) + parseInt(num2);
     }
     if (operation == "-") {
         return num1 - num2;
     }
     if (operation == "*") {
         return num1 * num2;
-    } if (operation == ":") {
+    } if (operation == "/") {
         return num1 / num2;
     }
     if (operation == "^") {
@@ -25,5 +25,13 @@ const calculate = (num1, num2, operation) => {
     }
     if (operation == "Min") {
         return Math.min(num1, num2);
+    }
+    if (operation == "Max") {
+        return Math.max(num1, num2);
+    }
+    if (operation == "?") {
+        const operations = ['+', '-', '*', '/', '%', '^', 'Max', 'Min'];
+        const randomOperation = operations[Math.floor(Math.random() * 8)];
+        return calculate(num1, num2, randomOperation);
     }
 }
