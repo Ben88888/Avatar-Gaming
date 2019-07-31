@@ -1,6 +1,7 @@
 <html>
 	<head>		
-		<title> Calculator minigame </title>
+		<title> Calculator Minigame </title>
+		<link rel = "icon" href = "calc.png">
 		<script src="js/calculator.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -35,7 +36,8 @@
 		<button id="min" type="button" class="button secondRow" onclick="alert(calculate(document.getElementById('firstNumber').value, document.getElementById('secondNumber').value, 'Min'))">Min</button><br>	
 		<button id="random" type="button" class="button lastRow" onclick="alert(calculate(document.getElementById('firstNumber').value, document.getElementById('secondNumber').value, '?'))">?</button>
 		<button id="rn" type="button" class="button lastRow" onclick="document.getElementById('firstNumber').value = Math.floor(Math.random() * 10000);document.getElementById('secondNumber').value = Math.floor(Math.random() * 10000);">Random Numbers</button>
-		<button id="gamestart" class="button" onclick="randomNumbers()">Start Game</button>
+		<button id="gamestart" class="button" onclick="randomNumbers()">Start Operation Guessing Game</button><br>
+		<button id="gamestart" class="button" onclick="randomExercise()">Starts Random Exercise Game</button>
 	</body>
 
 </html>
