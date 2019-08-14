@@ -5,11 +5,11 @@
 		<script src="js/calculator.js" type="text/javascript"></script>
 	</head>
 	<body>
-	    <center><h1 style= "color:red">Calculator Minigame</h1></center>
+	    <center><h1 style= "color:red;background-color: white;width: 342px;">Calculator Minigame</h1></center>
 		<form>
-			Please enter the first number
+			<span style="color:black;background-color: white;">Please enter the first number</span>
 			<input type='text' id='firstNumber'><br>
-			Please enter the second number
+			<span style="color:black;background-color: white;">Please enter the second number</span>
 			<input type='text' id='secondNumber'>
 		</form>
 		<style>
@@ -25,6 +25,10 @@
   			margin: 4px 2px;
   			cursor: pointer;
 			}
+		body  {
+ 			background-image: url("background.gif");
+ 			background-color: #cccccc;
+}
 		</style>	
 		<button id="plus" type="button" class="button math firstRow" onclick="alert(calculate(document.getElementById('firstNumber').value, document.getElementById('secondNumber').value, '+'))">+</button>
 		<button id="minus" type="button" class="button math firstRow" onclick="alert(calculate(document.getElementById('firstNumber').value, document.getElementById('secondNumber').value, '-'))">-</button>

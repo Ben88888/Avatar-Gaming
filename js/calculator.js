@@ -75,7 +75,7 @@ const randomExercise = () => {
         document.getElementById('firstNumber').value = num1;
         document.getElementById('secondNumber').value = num2;
         const randomOperation2 = randomOperation();
-        alert(num1 + " " + randomOperation2 + " " + num2);
+        alert(num1 + " " + randomOperation2 + " " + num2 + " = ");
         const guessSolution = prompt("Please guess the solution!");
         const randomSolution = calculate(num1, num2, randomOperation2);
         if (randomSolution == guessSolution) {
