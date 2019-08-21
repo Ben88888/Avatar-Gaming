@@ -1,6 +1,6 @@
 const randomOperation = () => {
     const operations = ['+', '-', '*', '/', '%', '^', 'Max', 'Min'];
-    return operations[Math.floor(Math.random() * 8)];
+    return operations[Math.floor(Math.random() * operations.length)];
 }
 
 /**
