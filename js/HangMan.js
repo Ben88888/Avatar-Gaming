@@ -43,7 +43,7 @@ const gameStart = () => {
             alert("You lost... the word was " + randomWord + " and your score is " + score);
         }
         DoYouWantToContinue = prompt('Do You Want To Continue?');
-    }
+    } alert('Thanks for playing! your total score is ' + score)
 }
 
 const letterHider = (word) => {
