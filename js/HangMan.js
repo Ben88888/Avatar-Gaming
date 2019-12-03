@@ -1,10 +1,15 @@
-const words = ['eflection', 'fashionable', 'mill', 'flex', 'damage', 'dirty', 'allowance', 'neck', 'recruit',
- 'television', 'tired', 'cook', 'limited', 'routine', 'choose', 'peace', 'wisecrack', 'essay', 'enhance', 'ally',
- 'clerk','attention','opera','dimension','west','belong','excuse','leak','champion','liberal','barrier','confusion',
- 'clearance','truth','install','swop','curve','analysis','realize','glance','nationalist','slice','cave','conservative',
- 'movie','spokesperson','aquarium','omission','introduce','move','brink','benefit','expertise','desk','division',
- 'bathtub','unpleasant','hook','dine','holiday','skeleton','relax','suitcase','groan','miserable','office','corpse',
- 'sticky'];
+const categoriesToWords = {
+    "animals": ["lion", "penguin", "flamingo", "dog", "falcon", "horse", "cat", "pig", "racoon", "fish"],
+    "countries": ["america", "russia", "israel", "italy", "germany", "thailand", "alabama", "australia", "belgium", "cyprus"],
+    "colors": ["red", "blue", "yellow", "green", "black", "grey", "white", "purple", "pink", "orange"],
+    "food": ["steak", "apple", "rice", "bread", "soup", "chicken", "banana", "orange", "tomato", "cucumber"],
+    "school subjects": ["english", "math", "science", "geography", "physics", "history", "litrature", "chimestry", "biology", "art"],
+    "body parts": ["leg", "arm", "hand", "foot", "ear", "nose", "mouth", "eye", "stomach", "back"],
+    "desserts": ["cake", "biscotti", "cobbler", "waffle", "pancake", "doughnut", "brownie", "cupcake", "cookie", "fudge"],
+    "tools": ["axe", "drill", "hoe", "shovel", "pickaxe", "glue", "hammer", "knife", "ladder", "nail"],
+    "furniture": ["bench", "bed", "bookshelf", "chair", "chest", "desk", "table", "highchair", "lamp", "mirror"],
+    "biomes": ["aquatic", "cave", "city", "desert", "jungle", "pond", "rainforest", "swamp", "savanna", "woods"]
+};
  
 const firstMistakeDrawing = "_________";
 const secondMistakeDrawing = "       |      \n       |     \n       |     \n ____|____";
@@ -16,7 +21,13 @@ const seventhMistakeDrawing = "_____\n  |\n  O  |      \n /|\\  |     \n       |
 const eighthMistakeDrawing = "_____\n  |\n  O  |      \n /|\\  |     \n /     |     \n ____|____";
 const ninthMistakeDrawing = "_____\n  |\n  O  |      \n /|\\  |     \n / \\  |     \n ____|____";
 
-const wordChooser = () => {
+const categoryChooser = () => {
+    const categories = Object.keys(categoriesToWords);
+    return categories[Math.floor(Math.random() * categories.length)];
+}
+
+const wordChooser = (category) => {
+    const words = categoriesToWords[category];
     return words[Math.floor(Math.random() * words.length)];
 }
 const gameStart = () => {
@@ -24,12 +35,13 @@ const gameStart = () => {
     let score = 0;
     while(DoYouWantToContinue == 'Yes' || DoYouWantToContinue == 'yes' || DoYouWantToContinue == 'y') {
         alert("Welcome to Hang Man!");
-        const randomWord = wordChooser();
+        const category = categoryChooser();
+        const randomWord = wordChooser(category);
         let hiddenWord = letterHider(randomWord);
         let mistakeCounter = 0;
 
         do {
-            alert(hiddenWord);
+            alert("the category is: " + category + "\n" + hiddenWord);
             const letter = prompt("Please guess a letter!");
             mistakeCounter = mistakeChecker(randomWord, letter, mistakeCounter);
             hiddenWord = wordCompleter(randomWord, hiddenWord, letter);
@@ -84,24 +96,25 @@ const mistakeChecker = (originalWord, guessedLetter, mistakeCounter) => {
     }
     if (letterPositions.length == 0) {
         mistakeCounter++;
+        alert("your guess was wrong");
         if (mistakeCounter == 1) {
-            alert(firstMistakeDrawing)
+            alert(firstMistakeDrawing);
         } else if (mistakeCounter == 2) {
-            alert(secondMistakeDrawing)
+            alert(secondMistakeDrawing);
         } else if (mistakeCounter == 3) {
-            alert(thirdMistakeDrawing)
+            alert(thirdMistakeDrawing);
         } else if (mistakeCounter == 4) {
-            alert(fourthMistakeDrawing)
+            alert(fourthMistakeDrawing);
         } else if (mistakeCounter == 5) {
-            alert(fifthMistakeDrawing)
+            alert(fifthMistakeDrawing);
         } else if (mistakeCounter == 6) {
-            alert(sixthMistakeDrawing)
+            alert(sixthMistakeDrawing);
         } else if (mistakeCounter == 7) {
-            alert(seventhMistakeDrawing)
+            alert(seventhMistakeDrawing);
         } else if (mistakeCounter == 8) {
-            alert(eighthMistakeDrawing)
+            alert(eighthMistakeDrawing);
         } else if (mistakeCounter == 9) {
-            alert(ninthMistakeDrawing)
+            alert(ninthMistakeDrawing);
         }
     }
     return mistakeCounter;
