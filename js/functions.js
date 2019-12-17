@@ -88,3 +88,20 @@ const replaceV2 = (word, letter1, letter2, letter3, letter4) => {
 	return newWord2;
 }
 console.log(replaceV2("Howdy", "H", "o", "w", "o"));
+
+/**
+ * Reverses the order of a given number.
+ * @param {Number} number the given number
+ * Example: 4321 => 1234
+ */
+const reverseNumber = (number) => {
+	let reversedNumber = 0;
+	let n = number;
+	while (n > 0) {
+		let lastNumber = n % 10;
+		reversedNumber = reversedNumber * 10;
+		reversedNumber = reversedNumber + lastNumber;
+		n = Math.floor(n / 10);
+	}
+	return reversedNumber;
+}

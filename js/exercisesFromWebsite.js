@@ -489,21 +489,21 @@ console.log(reverseThis('Memes'));
 /**
  * exercise 94
  * This function finds the number which appears most in a given array of integers.
- * @param {number} arr 
+ * @param {number} a
  */
-function array_element_mode(arr) {
-  var ctr = [],
-    ans = 0;
+const arrayElementMode = (a) => {
+  var c = [];
+    arg = 0;
 
-  for(var i = 0; i < 10; i++) {
-    ctr.push(0);
-  }
-  for(var i = 0; i < arr.length; i++) {
-    ctr[arr[i] - 1]++;
-    if(ctr[arr[i] - 1] > ctr[ans]) {
-      ans = arr[i] - 1;
+    for(var i = 0; i < 100; i++) {
+      c.push(0);
     }
-  }
-  return ans + 1;  
 }
-console.log(array_element_mode([5, 8, 3, 8, 8, 6, 7, 4]))
+for(var i = 0; i < a.length; i++) {
+  c[a[i] - 1]++;
+  if(c[a[i] - 1] > c[arg]) {
+    arg = a[i] - 1;
+  }
+return arg + 1;  
+}
+console.log(arrayElementMode(1, 32, 8, 49, 8, 8, 11, 99, 87, 16));
