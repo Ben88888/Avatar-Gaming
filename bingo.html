@@ -1,0 +1,48 @@
+<html>
+	<head>		
+		<title> Welcome To The Bingo Game </title>
+		<link rel = "icon"  href = "smokinggoose.jpg">
+		<link rel="stylesheet" type="text/css" href="bingo.css">
+        <script src="js/bingo.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<center><h1>Welcome To The Bingo Game</h1></center>
+		<div style="width: 100%; overflow: hidden;">
+			<div id="player1Board">
+				<h2 id="player1">Player1</h2>
+				<span class="player1Placement">X</span><span class="player1Placement">X</span ><span class="player1Placement">X</span>
+				<br>
+				<span class="player1Placement">X</span><span class="player1Placement">X</span><span class="player1Placement">X</span>
+				<br>
+				<span class="player1Placement">X</span><span class="player1Placement">X</span><span class="player1Placement">X</span>
+				<br>
+				<br>
+				<span id="score1" class="player1Placement">0</span>
+			</div>
+			<div id="player2Board">
+				<h2 id="player2">Player2</h2>
+				<span class="player2Placement">X</span><span class="player2Placement" class="player2Placement">X</span><span class="player2Placement">X</span>
+				<br>
+				<span class="player2Placement">X</span><span class="player2Placement" class="player2Placement">X</span><span class="player2Placement">X</span>
+				<br>
+				<span class="player2Placement">X</span><span class="player2Placement" class="player2Placement">X</span><span class="player2Placement">X</span>
+				<br>
+				<br>
+				<span id="score2" class="player2Placement">0</span>
+			</div>
+		</div>
+		<div id="gameControls">
+			<center><span id="generatedNumber">X</span></center>
+			<br>
+			<br>
+			<center><span id="winner">winner</span></center>
+			<br>
+			<br>
+			<center><button id="gamestart" class="button" onclick="gameStart()">start</button>
+			<br>
+			<br>
+			<button id="nextmove" class="button2" onclick="continueGame()">next move</button></center>
+		</div>
+	</body>
+
+</html>
