@@ -1,4 +1,4 @@
-const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 class Player {
@@ -71,28 +71,39 @@ class Game {
     }
 }
 
-const returnCards = () => {
-const chooseLetters = Object.keys(letters);
-let chosenLetters = [];
-const letter1 = chooseLetters[Math.floor(Math.random() * chooseLetters.length)];
-chooseLetters.splice(chooseLetters.findIndex(letter1), 1);
-chosenLetters.push(letter1);
-const letter2 = chooseLetters[Math.floor(Math.random() * chooseLetters.length)];
-chooseLetters.splice(chooseLetters.findIndex(letter2), 1);
-chosenLetters.push(letter2);
-const letter3 = chooseLetters[Math.floor(Math.random() * chooseLetters.length)];
-chooseLetters.splice(chooseLetters.findIndex(letter3), 1);
-chosenLetters.push(letter3);
-const letter4 = chooseLetters[Math.floor(Math.random() * chooseLetters.length)];
-chooseLetters.splice(chooseLetters.findIndex(letter4), 1);
-chosenLetters.push(letter4);
-const letter5 = chooseLetters[Math.floor(Math.random() * chooseLetters.length)];
-chooseLetters.splice(chooseLetters.findIndex(letter5), 1);
-chosenLetters.push(letter5);
+const chooseRandomLetters = () => {
+    let chosenLetters = [];
+    let originalLetters = [...letters];
+    for (let i = 0; i < 5; i++) {
+        const letter1Index = Math.floor(Math.random() * (letters.length - i));
+        const letter1 = letters[letter1Index];
+        letters.splice(letter1Index, 1);
+        chosenLetters.push(letter1);
+    } letters = originalLetters;
+    return chosenLetters;
 }
 
-const cardPlacer = () => {
-    const enterName = Math.floor(Math.random() * 10) + 1;
+let placements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const chooseCardLocation = () => {
+    let chosenPlacements = [];
+    let allPlacements = [...placements]
+    for (let i = 0; i < 10; i++) {
+        const place1 = Math.floor(Math.random() * 10) + 1;
+        const place1Index = place1 - 1;
+        placements.splice(place1Index, 1);
+        chosenPlacements.push(place1);
+    } placements = allPlacements
+    return chosenPlacements;
+}
+
+const makeCards = (chosenPlacements, chosenLetters) => {
+    let chosenCards = [];
+    chosenCards.push(chosenPlacements[0] + chosenLetters[0], chosenPlacements[1] + chosenLetters[0],
+                    chosenPlacements[2] + chosenLetters[1], chosenPlacements[3] + chosenLetters[1],
+                    chosenPlacements[4] + chosenLetters[2], chosenPlacements[5] + chosenLetters[2],
+                    chosenPlacements[6] + chosenLetters[3], chosenPlacements[7] + chosenLetters[3],
+                    chosenPlacements[8] + chosenLetters[4], chosenPlacements[9] + chosenLetters[4]);
 }
 
 const game = new Game();
