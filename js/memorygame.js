@@ -87,10 +87,10 @@ let placements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const chooseCardLocation = () => {
     let chosenPlacements = [];
-    let allPlacements = [...placements]
+    let allPlacements = [...placements];
     for (let i = 0; i < 10; i++) {
-        const place1 = Math.floor(Math.random() * 10) + 1;
-        const place1Index = place1 - 1;
+        const place1Index = Math.floor(Math.random() * (placements.length));
+        const place1 = placements[place1Index];
         placements.splice(place1Index, 1);
         chosenPlacements.push(place1);
     } placements = allPlacements
@@ -99,11 +99,44 @@ const chooseCardLocation = () => {
 
 const makeCards = (chosenPlacements, chosenLetters) => {
     let chosenCards = [];
-    chosenCards.push(chosenPlacements[0] + chosenLetters[0], chosenPlacements[1] + chosenLetters[0],
-                    chosenPlacements[2] + chosenLetters[1], chosenPlacements[3] + chosenLetters[1],
-                    chosenPlacements[4] + chosenLetters[2], chosenPlacements[5] + chosenLetters[2],
-                    chosenPlacements[6] + chosenLetters[3], chosenPlacements[7] + chosenLetters[3],
-                    chosenPlacements[8] + chosenLetters[4], chosenPlacements[9] + chosenLetters[4]);
+    let even = true;
+    let j = 0;
+    for (let i = 0; i < chosenPlacements.length; i++) {
+        even = !even;
+        chosenCards.push(chosenPlacements[i] + chosenLetters[j]);
+        if (even == true) {
+            j++
+        }
+    }
+    return chosenCards;
+}
+
+const makeCards2 = (chosenPlacements2, chosenLetters2) => {
+    let chosenCards2 = [];
+    let even2 = true;
+    let j = 0;
+    for (let i = 0; i < chosenPlacements2.length; i++) {
+        even2 = !even2;
+        chosenCards2.push(chosenPlacements2[i] + chosenLetters2[j]);
+        if (even2 == true) {
+            j++
+        }
+    }
+    return chosenCards2;
+}
+
+const cardMaking = () => {
+    const cards = makeCards(chooseCardLocation(), chooseRandomLetters());
+    document.getElementById("letter1") = cards[0];
+    document.getElementById("letter2") = cards[1];
+    document.getElementById("letter3") = cards[2];
+    document.getElementById("letter4") = cards[3];
+    document.getElementById("letter5") = cards[4];
+    document.getElementById("letter6") = cards[5];
+    document.getElementById("letter7") = cards[6];
+    document.getElementById("letter8") = cards[7];
+    document.getElementById("letter9") = cards[8];
+    document.getElementById("letter10") = cards[9];
 }
 
 const game = new Game();
