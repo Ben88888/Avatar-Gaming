@@ -16,9 +16,10 @@ class Player {
 }
 
 class Card {
-    constructor(cardId, content) {
+    constructor(cardId, content, letterId) {
         this.cardId = cardId;
         this.content = content;
+        this.letterId = letterId
     }
     equals(otherCard) {
         return (otherCard.content == this.content);
@@ -27,7 +28,7 @@ class Card {
 
 const resetCard = (cardId, letterId) => {
     const cardHtmlElement = document.getElementById(cardId);
-    const letterHtmlElement = document.getElementById(letterId);
+    const letterHtmlElement = document.getElementById(letterId);    
     cardHtmlElement.style = "opacity: 1;";
     letterHtmlElement.style = "opacity: 0;";
 }
@@ -98,7 +99,8 @@ const makeCards = (chosenPlacements, chosenLetters) => {
     let j = 0;
     for (let i = 0; i < chosenPlacements.length; i++) {
         even = !even;
-        chosenCards.push(new Card(chosenPlacements[i], chosenLetters[j]));
+        const letterId = "letter" + chosenPlacements[i];
+        chosenCards.push(new Card(chosenPlacements[i], chosenLetters[j], letterId));
         if (even == true) {
             j++
         }
@@ -120,23 +122,37 @@ const cardMaking = () => {
     for (let i = 0; i < cards.length; i++) {
         const currentCard = cards[i];
         document.getElementById("letter" + (currentCard.cardId)).innerText = currentCard.content;
+        currentCard.cardId = "card" + (currentCard.cardId);
+        resetCard(currentCard.cardId, currentCard.letterId);
     }
 }
 
+const hideCards = (firstCard, secondCard) => {
+    game.unsetCards();
+    resetCard(firstCard.cardId, firstCard.letterId);
+    resetCard(secondCard.cardId, secondCard.letterId);
+}
+
 const game = new Game();
-const cardClicked = (cardId, content) => {
+const cardClicked = (cardId, content, letterId) => {
     if (game.isItFirstCard()) {
-        game.setFirstCard(new Card(cardId, content));
+        game.setFirstCard(new Card(cardId, content, letterId));
     } else {
         const firstCard = game.getFirstCard();
-        const secondCard = new Card(cardId, content);
+        const secondCard = new Card(cardId, content, letterId);
         if(firstCard.equals(secondCard)) {
             game.setSecondCard();
         } else {
-            game.unsetCards();
-            resetCard(firstCard.cardId, firstCard.content);
-            resetCard(secondCard.cardId, secondCard.content);
+            setTimeout(() => hideCards(firstCard, secondCard), 500);
         }
+    }
+}
+
+const isTheGameOver = (cardId, content, letterId) => {
+    if (game.isGameOver) {
+        alert("game over (placeholder)")
+    } else {
+        cardClicked(cardId, content, letterId);
     }
 }
 
@@ -146,5 +162,5 @@ const showCard = (cardId, letterId) => {
     const letter = letterHtmlElement.innerText;
     cardHtmlElement.style = "opacity: 0;";
     letterHtmlElement.style = "opacity: 1;";
-    cardClicked(cardId, letter);
+    cardClicked(cardId, letter, letterId);
 }
