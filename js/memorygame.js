@@ -146,7 +146,7 @@ const cardClicked = (cardId, content, letterId) => {
         const secondCard = new Card(cardId, content, letterId);
         if(firstCard.equals(secondCard)) {
             game.setSecondCard();
-            currentPlayer.incrementRoundScore()
+            currentPlayer.incrementRoundScore();
         } else {
             setTimeout(() => hideCards(firstCard, secondCard), 500);
         } isPlayer1Turn = !isPlayer1Turn;
@@ -154,10 +154,17 @@ const cardClicked = (cardId, content, letterId) => {
 }
 
 const isTheGameOver = (cardId, content, letterId) => {
+    let winningPlayer;
+    cardClicked(cardId, content, letterId);
     if (game.isGameOver()) {
-        alert("you won (also a placeholder but we didnt add scores or players yet)")
-    } else {
-        cardClicked(cardId, content, letterId);
+        if (player1.roundScore > player2.roundScore) {
+            winningPlayer = player1;
+            winningPlayer.incrementGameScore();
+        } else if (player1.roundScore < player2.roundScore) {
+            winningPlayer = player2;
+            winningPlayer.incrementGameScore();
+        }
+        alert(winningPlayer.name + " wins")
     }
 }
 
