@@ -53,7 +53,7 @@ class Game {
     setSecondCard() {
         this.firstCard = undefined;
         this.isFirstCard = true;
-        this.revealedCards++;
+        this.revealedCards = 2;
     }
 
     // Call this function if the cards aren't equal
@@ -63,7 +63,7 @@ class Game {
         this.revealedCards -= 2;
     }
     isGameOver() {
-        this.revealedCards = 10;
+        return this.revealedCards == 10;
     }
 }
 
@@ -134,7 +134,11 @@ const hideCards = (firstCard, secondCard) => {
 }
 
 const game = new Game();
+const player1 = new Player(prompt("What is your name (player 1)?"))
+const player2 = new Player(prompt("What is your name (player 2)?"))
+let isPlayer1Turn = true;
 const cardClicked = (cardId, content, letterId) => {
+    let currentPlayer = isPlayer1Turn ? player1 : player2;
     if (game.isItFirstCard()) {
         game.setFirstCard(new Card(cardId, content, letterId));
     } else {
@@ -142,15 +146,16 @@ const cardClicked = (cardId, content, letterId) => {
         const secondCard = new Card(cardId, content, letterId);
         if(firstCard.equals(secondCard)) {
             game.setSecondCard();
+            currentPlayer.incrementRoundScore()
         } else {
             setTimeout(() => hideCards(firstCard, secondCard), 500);
-        }
+        } isPlayer1Turn = !isPlayer1Turn;
     }
 }
 
 const isTheGameOver = (cardId, content, letterId) => {
-    if (game.isGameOver) {
-        alert("game over (placeholder)")
+    if (game.isGameOver()) {
+        alert("you won (also a placeholder but we didnt add scores or players yet)")
     } else {
         cardClicked(cardId, content, letterId);
     }
@@ -162,5 +167,5 @@ const showCard = (cardId, letterId) => {
     const letter = letterHtmlElement.innerText;
     cardHtmlElement.style = "opacity: 0;";
     letterHtmlElement.style = "opacity: 1;";
-    cardClicked(cardId, letter, letterId);
+    isTheGameOver(cardId, letter, letterId);
 }
