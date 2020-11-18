@@ -53,14 +53,14 @@ class Game {
     setSecondCard() {
         this.firstCard = undefined;
         this.isFirstCard = true;
-        this.revealedCards = 2;
+        this.revealedCards++;
     }
 
     // Call this function if the cards aren't equal
     unsetCards() {
         this.firstCard = undefined;
         this.isFirstCard = true;
-        this.revealedCards -= 2;
+        this.revealedCards--;
     }
     isGameOver() {
         return this.revealedCards == 10;
