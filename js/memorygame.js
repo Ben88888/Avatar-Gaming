@@ -32,6 +32,7 @@ const resetCard = (cardId, letterId) => {
     cardHtmlElement.style = "opacity: 1;";
     letterHtmlElement.style = "opacity: 0;";
 }
+
 class Game {
     constructor() {
         this.isFirstCard = true;
@@ -123,6 +124,11 @@ const cardMaking = () => {
         const currentCard = cards[i];
         document.getElementById("letter" + (currentCard.cardId)).innerText = currentCard.content;
         currentCard.cardId = "card" + (currentCard.cardId);
+        document.getElementById("score1").innerText = 0;
+        document.getElementById("score2").innerText = 0;
+        game.revealedCards = 0;
+        player1.roundscore = 0;
+        player2.roundscore = 0;
         resetCard(currentCard.cardId, currentCard.letterId);
     }
 }
@@ -147,6 +153,8 @@ const cardClicked = (cardId, content, letterId) => {
         if(firstCard.equals(secondCard)) {
             game.setSecondCard();
             currentPlayer.incrementRoundScore();
+            document.getElementById("score1").innerText = player1.roundscore;
+            document.getElementById("score2").innerText = player2.roundscore;
         } else {
             setTimeout(() => hideCards(firstCard, secondCard), 500);
         } isPlayer1Turn = !isPlayer1Turn;
@@ -168,11 +176,20 @@ const isTheGameOver = (cardId, content, letterId) => {
     }
 }
 
+const DoYouWantToContinue = (cardId, content, letterId) => {
+    let DoYouWantToContinue = "yes";
+    if (DoYouWantToContinue == "yes" || DoYouWantToContinue == "yes") {
+        isTheGameOver(cardId, content, letterId);
+    } else {
+        alert("Thanks for playing!")
+    }
+}
+
 const showCard = (cardId, letterId) => {
     const cardHtmlElement = document.getElementById(cardId);
     const letterHtmlElement = document.getElementById(letterId);
     const letter = letterHtmlElement.innerText;
     cardHtmlElement.style = "opacity: 0;";
     letterHtmlElement.style = "opacity: 1;";
-    isTheGameOver(cardId, letter, letterId);
+    DoYouWantToContinue(cardId, letter, letterId);
 }

@@ -4,3 +4,17 @@
     font-size: 107px;
     opacity: 0;
 }
+
+#score1 {
+    float: left;
+    margin-right: 493px;
+    border: solid;
+    background-color: red;
+}
+
+#score2 {
+    margin-left: 493px;
+    float: right;
+    border: solid;
+    background-color: blue;
+}
