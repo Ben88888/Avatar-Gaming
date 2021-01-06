@@ -13,6 +13,9 @@ class Player {
     incrementRoundScore() {
         this.roundScore++;
     }
+    resetRoundScore() {
+        this.roundScore = 0;
+    }
 }
 
 class Card {
@@ -127,8 +130,8 @@ const cardMaking = () => {
         document.getElementById("score1").innerText = 0;
         document.getElementById("score2").innerText = 0;
         game.revealedCards = 0;
-        player1.roundscore = 0;
-        player2.roundscore = 0;
+        player1.resetRoundScore();
+        player2.resetRoundScore();
         resetCard(currentCard.cardId, currentCard.letterId);
     }
 }
@@ -153,8 +156,12 @@ const cardClicked = (cardId, content, letterId) => {
         if(firstCard.equals(secondCard)) {
             game.setSecondCard();
             currentPlayer.incrementRoundScore();
-            document.getElementById("score1").innerText = player1.roundscore;
-            document.getElementById("score2").innerText = player2.roundscore;
+            const player1Score = player1.roundScore;
+            const player2Score = player2.roundScore;
+            console.log(player1Score);
+            console.log(player2Score);
+            document.getElementById("score1").innerText = player1Score;
+            document.getElementById("score2").innerText = player2Score;
         } else {
             setTimeout(() => hideCards(firstCard, secondCard), 500);
         } isPlayer1Turn = !isPlayer1Turn;
