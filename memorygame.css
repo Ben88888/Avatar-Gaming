@@ -6,15 +6,41 @@
 }
 
 #score1 {
-    float: left;
-    margin-right: 493px;
     border: solid;
     background-color: red;
 }
 
 #score2 {
-    margin-left: 493px;
-    float: right;
     border: solid;
     background-color: blue;
+}
+
+#gameScore2 {
+    border: solid;
+    background-color: darkblue;
+}
+
+#gameScore1 {
+    border: solid;
+    background-color: darkred;
+}
+
+#player1ScoreBoard {
+    float: left;
+    margin-right: 493px;
+}
+
+#player2ScoreBoard {
+    float: right;
+    margin-left: 493px;
+    margin-top: -7px;
+}
+
+body  {
+    background-image: url("pk doriyah.png");
+    background-color: #cccccc;
+   }
+
+.img {
+    margin-bottom: 6px;
 }

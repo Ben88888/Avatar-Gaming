@@ -22,7 +22,7 @@ class Card {
     constructor(cardId, content, letterId) {
         this.cardId = cardId;
         this.content = content;
-        this.letterId = letterId
+        this.letterId = letterId;
     }
     equals(otherCard) {
         return (otherCard.content == this.content);
@@ -122,6 +122,8 @@ const makeCards2 = (chosenPlacements2, chosenLetters2) => {
 
 const cardMaking = () => {
     const cards = makeCards(chooseCardLocation(), chooseRandomLetters());
+    document.getElementById("player1Name").innerText = player1.name;
+    document.getElementById("player2Name").innerText = player2.name;
     console.log(cards);
     for (let i = 0; i < cards.length; i++) {
         const currentCard = cards[i];
@@ -145,6 +147,7 @@ const hideCards = (firstCard, secondCard) => {
 const game = new Game();
 const player1 = new Player(prompt("What is your name (player 1)?"))
 const player2 = new Player(prompt("What is your name (player 2)?"))
+setTimeout(() => cardMaking(), 1);
 let isPlayer1Turn = true;
 const cardClicked = (cardId, content, letterId) => {
     let currentPlayer = isPlayer1Turn ? player1 : player2;
@@ -158,8 +161,6 @@ const cardClicked = (cardId, content, letterId) => {
             currentPlayer.incrementRoundScore();
             const player1Score = player1.roundScore;
             const player2Score = player2.roundScore;
-            console.log(player1Score);
-            console.log(player2Score);
             document.getElementById("score1").innerText = player1Score;
             document.getElementById("score2").innerText = player2Score;
         } else {
@@ -175,10 +176,14 @@ const isTheGameOver = (cardId, content, letterId) => {
         if (player1.roundScore > player2.roundScore) {
             winningPlayer = player1;
             winningPlayer.incrementGameScore();
-        } else if (player1.roundScore < player2.roundScore) {
+        } else {
             winningPlayer = player2;
             winningPlayer.incrementGameScore();
         }
+        let player1GameScore = player1.gameScore;
+        let player2GameScore = player2.gameScore;
+        document.getElementById("gameScore1").innerText = player1GameScore;
+        document.getElementById("gameScore2").innerText = player2GameScore;
         alert(winningPlayer.name + " wins")
     }
 }
