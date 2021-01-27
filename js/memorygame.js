@@ -197,11 +197,24 @@ const DoYouWantToContinue = (cardId, content, letterId) => {
     }
 }
 
+const isCardRevealed = (cardId) => {
+    let isRevealed = false;
+    const cardHtmlElement = document.getElementById(cardId);
+    if(cardHtmlElement.style.cssText == "opacity: 0;") {
+        isRevealed = true;
+    } else {
+        isRevealed = false;
+    } return isRevealed;
+}
+
 const showCard = (cardId, letterId) => {
     const cardHtmlElement = document.getElementById(cardId);
     const letterHtmlElement = document.getElementById(letterId);
     const letter = letterHtmlElement.innerText;
-    cardHtmlElement.style = "opacity: 0;";
-    letterHtmlElement.style = "opacity: 1;";
-    DoYouWantToContinue(cardId, letter, letterId);
+    const revealedCard = isCardRevealed(cardId);
+    if (revealedCard == false) {
+        cardHtmlElement.style = "opacity: 0;";
+        letterHtmlElement.style = "opacity: 1;";
+        DoYouWantToContinue(cardId, letter, letterId);
+    }
 }

@@ -7,17 +7,17 @@
 
 #score1 {
     border: solid;
-    background-color: red;
+    background-color: crimson;
 }
 
 #score2 {
     border: solid;
-    background-color: blue;
+    background-color: cyan;
 }
 
 #gameScore2 {
     border: solid;
-    background-color: darkblue;
+    background-color: rgb(0, 0, 185);
 }
 
 #gameScore1 {
@@ -27,7 +27,7 @@
 
 #player1ScoreBoard {
     float: left;
-    margin-right: 493px;
+    margin-right: 454px;
 }
 
 #player2ScoreBoard {
@@ -43,4 +43,24 @@ body  {
 
 .img {
     margin-bottom: 6px;
+}
+
+#cards {
+    float: right;
+    margin-right: 174px;
+}
+
+#reset {
+    margin-top: -285px;
+    margin-left: 143px;
+}
+
+.player1Text {
+    background-color: red;
+    border: solid;
+}
+
+.player2Text {
+    background-color: blue;
+    border: solid;
 }
